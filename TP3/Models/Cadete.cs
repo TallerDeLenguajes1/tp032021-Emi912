@@ -19,6 +19,23 @@ namespace TP3.Models
         public string Telefono { get => telefono; set => telefono = value; }
         public List<Pedidos> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
 
+        public Cadete(int id, string nombre, string direccion, string telefono)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            listadoPedidos = new List<Pedidos>();
+        }
 
+        public void AddPedido(Pedidos nuevoPedido)
+        {
+            listadoPedidos.Add(nuevoPedido);
+        }
+
+        public void RemovePedido(Pedidos pedido)
+        {
+            listadoPedidos.Remove(pedido);
+        }
     }
 }

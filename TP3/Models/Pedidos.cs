@@ -7,8 +7,8 @@ namespace TP3.Models
 {
     public enum Estado
     {
-        Entregado,
         EnCamino,
+        Entregado,
         Cancelado
     }
     public class Pedidos
@@ -22,5 +22,13 @@ namespace TP3.Models
         public string Observacion { get => observacion; set => observacion = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
         public Estado EstadoPedido { get => estadoPedido; set => estadoPedido = value; }
+
+        public Pedidos(string idPedido, string observacion, string dni, string direccion, string telefono, string nombreCliente)
+        {
+            nroPedido = Convert.ToInt32(idPedido);
+            this.observacion = observacion;
+            this.cliente = new Cliente(dni, direccion, nombreCliente, telefono);
+            estadoPedido = 0;
+        }
     }
 }
