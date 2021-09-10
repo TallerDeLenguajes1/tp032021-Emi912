@@ -19,10 +19,20 @@ namespace TP3.Controllers
 
         public IActionResult AltaCadetes(string nombre,string direccion, string telefono)
         {
-            Cadete nuevoCadete = new Cadete(id, nombre,direccion, telefono);
-            id++;
-            miCadeteria.ListadoCadetes.Add(nuevoCadete);
+            if (nombre != null && direccion != null && telefono != null)
+            {
+                Cadete nuevoCadete = new Cadete(id, nombre, direccion, telefono);
+                id++;
+                miCadeteria.ListadoCadetes.Add(nuevoCadete);
+            }
+           
             return View(miCadeteria);
+        }
+
+        public IActionResult MostrarCadetes()
+        {
+
+            return View("AltaCadetes");
         }
     }
 }
