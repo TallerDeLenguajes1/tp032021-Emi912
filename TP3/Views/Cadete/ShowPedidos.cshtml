@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model TP3.Models.Cadete
+
+<h1>Pedidos de @Model.Nombre</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nro Pedido</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Estado</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.ListadoPedidos)
+        {
+
+            <tr>
+                <th scope="row">@item.NroPedido</th>
+                <td>@item.Cliente.Nombre</td>
+                <td>@item.Cliente.Direccion</td>
+                <td>@item.Cliente.Telefono</td>
+                <td>@item.EstadoPedido</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

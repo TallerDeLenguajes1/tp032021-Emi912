@@ -9,8 +9,14 @@ namespace TP3.Controllers
 {
     public class CadeteController : Controller
     {
-        private static int id = 0;
-        private static Cadeteria miCadeteria = new Cadeteria("Pico Limitos", "Congreso y Aristobulo");
+        private static int idCadete = 1;
+        private static int idClient = 1;
+        private static int nroPedido = 1;
+        private readonly DBTemp _db;
+        public CadeteController(DBTemp  db)
+        {
+            _db = db;
+        }
         public IActionResult Index()
         {
           
@@ -21,18 +27,64 @@ namespace TP3.Controllers
         {
             if (nombre != null && direccion != null && telefono != null)
             {
-                Cadete nuevoCadete = new Cadete(id, nombre, direccion, telefono);
-                id++;
-                miCadeteria.ListadoCadetes.Add(nuevoCadete);
+                Cadete nuevoCadete = new Cadete(idCadete, nombre, direccion, telefono);
+                idCadete++;
+                _db.MiCadeteria.AddCadete(nuevoCadete);
+                _db.GuardarCadetes();
             }
            
-            return View(miCadeteria);
+            return View(_db.GetCadetes());
         }
 
-        public IActionResult MostrarCadetes()
+    
+        public IActionResult FormPedidos(int id)
         {
+            foreach (var item in _db.MiCadeteria.ListadoCadetes)
+            {
+                if (item.Id == id)
+                {
+                    return View(item);
+                }
+            }
 
-            return View("AltaCadetes");
+            return View("ErrorViewModel");
+
+
         }
+
+        public IActionResult AltaPedidos(string nombre, string direccion, string telefono, string obs, int id)
+        {
+            foreach (var item in _db.MiCadeteria.ListadoCadetes)
+            {
+                if (id == item.Id)
+                {
+                    Cliente cliente = new Cliente(id, direccion, nombre, telefono);
+                    Pedidos nuevoPedido = new Pedidos(nroPedido, obs, cliente);
+                    item.AddPedido(nuevoPedido);
+                    _db.GuardarCadetes();
+                    return View(item);
+                }
+            }
+
+            return View("ErrorViewModel");
+
+        }
+
+
+        public IActionResult ShowPedidos(int id)
+        {
+            foreach (var item in _db.MiCadeteria.ListadoCadetes)
+            {
+                if (id == item.Id)
+                {
+                    return View(item);
+                }
+            }
+
+            return View("ErrorViewModel");
+        }
+
+     
+
     }
 }

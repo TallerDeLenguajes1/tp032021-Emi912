@@ -8,11 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TP3.Models;
 
 namespace TP3
 {
     public class Startup
     {
+        static DBTemp DB = new DBTemp();
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +27,7 @@ namespace TP3
         {
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddSingleton(DB);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

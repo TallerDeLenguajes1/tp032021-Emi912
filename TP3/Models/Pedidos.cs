@@ -23,11 +23,11 @@ namespace TP3.Models
         public Cliente Cliente { get => cliente; set => cliente = value; }
         public Estado EstadoPedido { get => estadoPedido; set => estadoPedido = value; }
 
-        public Pedidos(string idPedido, string observacion, string dni, string direccion, string telefono, string nombreCliente)
+        public Pedidos(int nroPedido, string observacion, Cliente cliente)
         {
-            nroPedido = Convert.ToInt32(idPedido);
+            this.nroPedido = nroPedido;
             this.observacion = observacion;
-            this.cliente = new Cliente(dni, direccion, nombreCliente, telefono);
+            this.cliente = cliente;
             estadoPedido = 0;
         }
     }

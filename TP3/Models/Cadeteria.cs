@@ -26,12 +26,18 @@ namespace TP3.Models
 
         public void CalcularGastos()
         {
-            
+
             foreach (var item in listadoCadetes)
             {
                 gastos += item.ListadoPedidos.Count * 100;
             }
 
+
+        }
+
+        public void AddCadete(Cadete nuevoCadete)
+        {
+            ListadoCadetes.Add(nuevoCadete);
 
         }
     }

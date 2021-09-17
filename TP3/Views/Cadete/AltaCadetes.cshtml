@@ -13,18 +13,28 @@
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in @Model.ListadoCadetes)
         {
 
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td>@item.Nombre</td>
-                <td>@item.Direccion</td>
-            </tr>
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Nombre</td>
+            <td>@item.Direccion</td>
+            <td>@item.Telefono</td>
+            <td>
+                @Html.ActionLink("Hacer Pedido", "FormPedidos", new { id = item.Id }, new { @class = "btnagre" })
+            </td>
+            <td><a href="~/Cadete/ShowPedidos/@item.Id" class="btnGrande" name="Guardar">Mostrar Pedidos</a></td>
+
+        </tr>
 
         }
     </tbody>
     </table>
+
