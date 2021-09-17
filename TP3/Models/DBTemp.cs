@@ -67,26 +67,5 @@ namespace TP3.Models
         }
 
 
-        public void AddPedido()
-        {
-            string path = @"Cadetes";
-            string cadeteJson = JsonSerializer.Serialize(miCadeteria.ListadoCadetes);
-
-
-            using (FileStream miArchivo = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                using (StreamWriter strWriter = new StreamWriter(miArchivo))
-                {
-                    strWriter.Write(cadeteJson);
-                    strWriter.Close();
-                    strWriter.Dispose();
-                }
-            }
-
-
-
-        }
-
-
     }
 }
