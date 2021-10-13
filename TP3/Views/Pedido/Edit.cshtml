@@ -1,0 +1,32 @@
+﻿@model TP3.Models.Pedidos
+
+
+
+<h1>Modificar Pedido</h1>
+
+<form asp-action="GuardarEdit" class="row g-3 w-50">
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Nombre</label>
+        <input type="text" name="nombre" class="form-control" id="validationDefault01" value="@Model.Cliente.Nombre" required>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationDefault03" class="form-label">Telefono</label>
+        <input type="text" name="telefono" class="form-control" id="validationDefault03" value="@Model.Cliente.Telefono" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Osbservacion</label>
+        <textarea class="form-control" name="obs" aria-label="With textarea">@Model.Observacion</textarea>
+    </div>
+    <div class="form-group">
+      
+        <select asp-items="Html.GetEnumSelectList<Estado>()" name="estado">
+            <option>Selecciona el estado</option>
+        </select>
+
+    </div>
+    <input type="hidden" name="_id" value="@Model.Cliente.Id" />
+    <div class="col-12 mt-5">
+        <button class="btn btn-primary" type="submit">Modificar</button>
+    </div>
+</form>

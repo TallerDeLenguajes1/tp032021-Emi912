@@ -22,7 +22,6 @@ namespace TP3.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
 

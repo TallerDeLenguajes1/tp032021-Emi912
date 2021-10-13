@@ -10,11 +10,14 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Nro Pedido</th>
+            <th scope="col">Id Cliente</th>
             <th scope="col">Cliente</th>
             <th scope="col">Direccion</th>
             <th scope="col">Telefono</th>
             <th scope="col">Estado</th>
+            <th scope="col">Observacion</th>
+
+
 
         </tr>
     </thead>
@@ -23,11 +26,17 @@
         {
 
         <tr>
-            <th scope="row">@item.NroPedido</th>
+            <td>@item.Cliente.Id</td>
             <td>@item.Cliente.Nombre</td>
             <td>@item.Cliente.Direccion</td>
             <td>@item.Cliente.Telefono</td>
             <td>@item.EstadoPedido</td>
+            <td><textarea class="form-control" aria-label="With textarea" readonly>@item.Observacion</textarea></td>
+            <td><a asp-controller="Pedido" asp-action="Edit" asp-route-idPedido="@item.Cliente.Id" >Editar</a></td>
+            @if (item.EstadoPedido == Estado.Entregado || item.EstadoPedido == Estado.Cancelado)
+            {
+                <td><a href="~/Pedido/Delete/@item.Cliente.Id" class="btnGrande" name="Eliminar">Eliminar</a></td>
+            }
         </tr>
 
         }

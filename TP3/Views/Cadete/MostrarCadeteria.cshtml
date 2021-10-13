@@ -1,0 +1,36 @@
+﻿@model TP3.Models.Cadeteria
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nro Pedido</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Cadete a Cargo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Estado</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in @Model.ListadoCadetes)
+        {
+            @foreach (var j in i.ListadoPedidos)
+            {
+
+        <tr>
+            <td>@j.Cliente.Id</td>
+            <td>@j.Cliente.Nombre</td>
+            @*<td>@i.Nombre</td>*@
+        <td>@Html.DropDownList("Opciones")</td>
+
+            <td>@j.Cliente.Telefono</td>
+            <td>@j.Cliente.Direccion</td>
+            <td>@Html.DropDownListFor(m => j.EstadoPedido, new SelectList(Enum.GetValues(typeof(Estado))), j.EstadoPedido)</td>
+        </tr>
+            }
+
+
+        }
+    </tbody>
+</table>

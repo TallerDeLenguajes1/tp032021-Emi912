@@ -8,6 +8,7 @@ namespace TP3.Models
     public class Cadete
     {
         private int id;
+        private string dni;
         private string nombre;
         private string direccion;
         private string telefono;
@@ -18,13 +19,15 @@ namespace TP3.Models
         public string Direccion { get => direccion; set => direccion = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public List<Pedidos> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
+        public string Dni { get => dni; set => dni = value; }
 
-        public Cadete(int id, string nombre, string direccion, string telefono)
+        public Cadete(int id, string nombre, string direccion, string telefono, string dni)
         {
             this.id = id;
             this.nombre = nombre;
             this.direccion = direccion;
             this.telefono = telefono;
+            this.Dni = dni;
             listadoPedidos = new List<Pedidos>();
         }
 

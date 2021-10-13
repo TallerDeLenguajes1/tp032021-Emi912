@@ -1,0 +1,28 @@
+﻿
+@model TP3.Models.Cadete
+
+<h1>Dar de alta un Cadete</h1>
+
+<form asp-action="GuardarEdit" class="row g-3 w-50">
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Nombre</label>
+        <input type="text" name="nombre" class="form-control" id="validationDefault01" value="@Model.Nombre" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">DNI</label>
+        <input type="text" name="dni" class="form-control" id="validationDefault02" value="@Model.Dni" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Direccion</label>
+        <input type="text" name="direccion" class="form-control" id="validationDefault02" value="@Model.Direccion" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault03" class="form-label">Telefono</label>
+        <input type="text" name="telefono" class="form-control" id="validationDefault03" value="@Model.Telefono" required>
+    </div>
+
+    <input type="hidden" name="_id" value="@Model.Id" />
+    <div class="col-12 mt-5">
+        <button class="btn btn-primary" type="submit">Modificar</button>
+    </div>
+</form>

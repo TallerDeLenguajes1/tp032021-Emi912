@@ -28,10 +28,14 @@
             <td>@item.Direccion</td>
             <td>@item.Telefono</td>
             <td>
-                @Html.ActionLink("Hacer Pedido", "FormPedidos", new { id = item.Id }, new { @class = "btnagre" })
+                <a href="~/Pedido/FormPedidos/@item.Id" class="btnGrande" name="Hacer">Hacer Pedido</a>
             </td>
-            <td><a href="~/Cadete/ShowPedidos/@item.Id" class="btnGrande" name="Guardar">Mostrar Pedidos</a></td>
-
+            <td><a href="~/Pedido/ShowPedidos/@item.Id" class="btnGrande" name="Guardar">Mostrar Pedidos</a></td>
+            <td>
+                <a href="~/Cadete/Edit/@item.Id" class="btnGrande" name="Editar">Editar ||</a>
+                
+                <a href="~/Cadete/Delete/@item.Id" class="btnGrande" name="Eliminar">Eliminar</a>
+            </td>
         </tr>
 
         }

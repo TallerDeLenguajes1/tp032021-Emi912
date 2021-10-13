@@ -10,16 +10,21 @@ namespace TP3.Models
     public class DBTemp
     {
         private Cadeteria miCadeteria;
+        private string path = @"Cadetes";
         public Cadeteria MiCadeteria { get => miCadeteria; set => miCadeteria = value; }
         public DBTemp()
         {
             MiCadeteria = new Cadeteria("Sandwicheria de Chirola", "San Martin 426");
+            if (File.Exists(path))
+            {
+                MiCadeteria = GetDatos();
+            }
         }
 
-        public void GuardarCadetes()
+        public void GuardarDatos()
         {
-            string path = @"Cadetes";
-            string cadeteJson = JsonSerializer.Serialize(miCadeteria.ListadoCadetes);
+            
+            string cadeteJson = JsonSerializer.Serialize(miCadeteria);
 
 
             using (FileStream miArchivo = new FileStream(path, FileMode.OpenOrCreate))
@@ -32,15 +37,15 @@ namespace TP3.Models
                 }
             }
 
+            MiCadeteria = GetDatos();
         }
 
 
-        public Cadeteria GetCadetes()
+        public Cadeteria GetDatos()
         {
-            List<Cadete> CadetesJson = null;
+            Cadeteria CadetesJson;
             try
             {
-                string path = @"Cadetes";
                 if (File.Exists(path))
                 {
                     using (FileStream miArchivo = new FileStream(path, FileMode.Open))
@@ -48,8 +53,8 @@ namespace TP3.Models
                         using (StreamReader strReader = new StreamReader(miArchivo))
                         {
                             string Cadetes = strReader.ReadToEnd();
-                            CadetesJson = JsonSerializer.Deserialize<List<Cadete>>(Cadetes);
-                            MiCadeteria.ListadoCadetes = CadetesJson;
+                            CadetesJson = JsonSerializer.Deserialize<Cadeteria>(Cadetes);
+                            MiCadeteria = CadetesJson;
                         }
                     }
                 }
@@ -61,6 +66,7 @@ namespace TP3.Models
                 string error = e.ToString();
             }
 
+ 
           
             return MiCadeteria;
 
