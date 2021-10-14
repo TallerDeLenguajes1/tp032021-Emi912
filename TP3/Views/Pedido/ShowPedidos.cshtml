@@ -35,7 +35,7 @@
             <td><a asp-controller="Pedido" asp-action="Edit" asp-route-idPedido="@item.Cliente.Id" >Editar</a></td>
             @if (item.EstadoPedido == Estado.Entregado || item.EstadoPedido == Estado.Cancelado)
             {
-                <td><a href="~/Pedido/Delete/@item.Cliente.Id" class="btnGrande" name="Eliminar">Eliminar</a></td>
+        <td><a asp-controller="Pedido" asp-action="Delete" asp-route-idPedido="@item.Cliente.Id">Quitar Pedido</a></td>
             }
         </tr>
 

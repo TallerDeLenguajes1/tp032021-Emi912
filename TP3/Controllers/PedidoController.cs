@@ -69,7 +69,7 @@ namespace TP3.Controllers
 
         }
 
-        public IActionResult Edit(int idPedido)
+        public IActionResult Edit(int idPedido)         //Busca el pedido y muestra form para editar
         {
             foreach (var cadete in _db.MiCadeteria.ListadoCadetes)
             {
@@ -99,6 +99,7 @@ namespace TP3.Controllers
                         pedido.Cliente.Telefono = telefono;
                         pedido.Observacion = obs;
                         pedido.EstadoPedido = estado;
+                        _db.GuardarDatos();
                         return RedirectToAction("ShowPedidos", new { id =  cadete.Id});
                     }
                 }
@@ -109,7 +110,25 @@ namespace TP3.Controllers
             
         }
 
-        
+        public IActionResult Delete(int idPedido)                             //Eliminar el pedido
+        {
+            foreach (var cadete in _db.MiCadeteria.ListadoCadetes)
+            {
+                foreach (var pedido in cadete.ListadoPedidos)
+                {
+                    if (idPedido == pedido.Cliente.Id)
+                    {
+                        cadete.ListadoPedidos.Remove(pedido);
+                        _db.GuardarDatos();
+                        return RedirectToAction("ShowPedidos", new { id = cadete.Id });
+                    }
+                }
+            }
+
+            return View("ErrorViewModel");
+        }
+
+
     }
 
 
